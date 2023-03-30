@@ -1,0 +1,62 @@
+@use 'sass:math';
+// 640px, 768px (tablet), 1024px, 1280px (laptop), 1536px
+$breakpoints-up: (
+  'small': 40em,
+  'medium': 48em,
+  'large': 64em,
+  'xl': 80em,
+  '2xl': 96em,
+);
+
+// 639.98px, 767.98px, 1023.98px, 1279.98px, 1535.98px
+$breakpoints-down: (
+  'small': 39.99875em,
+  'medium': 47.99875em,
+  'large': 63.99875em,
+  'xl': 79.99875em,
+  '2xl': 95.99875em,
+);
+
+@mixin breakpoint-up($size) {
+  @media screen and (min-width: map-get($breakpoints-up, $size)) {
+    @content;
+  }
+}
+
+@mixin breakpoint-down($size) {
+  @media screen and (max-width: map-get($breakpoints-down, $size)) {
+    @content;
+  }
+}
+
+@mixin breakpoint-between($min-size, $max-size) {
+  @media screen and (min-width: map-get($breakpoints-down, $min-size)) and (max-width: map-get($breakpoints-down, $max-size)) {
+    @content;
+  }
+}
+
+$min-view: '';
+$max-view: '';
+@function fluid-typo($min-size, $max-size) {
+  $frange: $max-size - $min-size;
+  $vrange: $max-view - $min-view;
+  $fraction: math.div($frange * 100, $vrange);
+  @return clamp($min-size, calc($min-size + ((1vw - ($min-view / 100)) * $fraction)), $max-size);
+}
+
+// Convert px to em/rem
+@function rem($pixel) {
+  @if math.is-unitless($pixel) {
+    @return math.div($pixel, 16) + rem;
+  } @else {
+    @error "@pixel is not a number";
+  }
+}
+
+@function em($pixel) {
+  @if math.is-unitless($pixel) {
+    @return math.div($pixel, 16) + em;
+  } @else {
+    @error "@pixel is not a number";
+  }
+}

@@ -1,0 +1,4 @@
+prod ansible_host=103.229.41.107 ansible_user=root
+
+[server_hosts]
+prod

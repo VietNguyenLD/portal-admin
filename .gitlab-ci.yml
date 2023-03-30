@@ -1,0 +1,63 @@
+stages:
+#   - lint
+  - deploy
+
+# Use share cache to improve performance
+.cache: &cache
+  cache:
+    key:
+      files:
+        - yarn.lock
+        - package.json
+    paths:
+      - .yarn-cache/
+
+.deploy_base: &deploy_base
+  image: nguyenxuanhuy/xh-runner:v1.0
+  before_script:
+    - eval $(ssh-agent -s)
+    - echo "$DEPLOY_SSH_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+
+    - ssh-keyscan -H $DEPLOY_SERVER >> ~/.ssh/known_hosts
+    - ssh-keyscan -H $LB_HOST >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+
+    - cd deploy
+    - echo $VAULT_PASS > .vault_pass_$CI_ENVIRONMENT_NAME
+  script:
+    - ./deploy.sh $CI_ENVIRONMENT_NAME
+
+# lint:
+#   stage: lint
+#   <<: *cache
+#   before_script:
+#     - yarn install --frozen-lockfile --cache-folder .yarn-cache
+#   script:
+#     - yarn lint
+#   rules:
+#     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+#     - if: '$CI_COMMIT_REF_PROTECTED == "true"'
+
+deploy:dev:
+  stage: deploy
+  only:
+    - develop
+  <<: *deploy_base
+  environment: dev
+
+deploy:staging:
+  stage: deploy
+  only:
+    - release
+  <<: *deploy_base
+  environment: staging
+
+deploy:prod:
+  stage: deploy
+  only:
+    - master
+  <<: *deploy_base
+  environment: prod
+  when: manual

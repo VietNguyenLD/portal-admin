@@ -1,0 +1,36 @@
+---
+
+- name: Clean "{{ project_temp_root_dir }}"
+  run_once: true
+  file:
+    state: absent
+    path: "{{ project_temp_root_dir }}"
+
+- name: checkout "{{git_repo}}" "{{git_branch}}" to "{{ project_temp_root_dir }}"
+  run_once: true
+  local_action: git
+  args:
+    repo: "{{ git_repo }}"
+    accept_hostkey: True
+    recursive: yes
+    remote: origin
+    dest: "{{ project_temp_root_dir }}"
+    version: "{{ git_branch }}"
+    update: yes
+
+- name: export variables
+  copy:
+    src: "{{ project_temp_root_dir }}/deploy/env/{{ env }}/.env_encrypted"
+    dest: "{{ project_temp_root_dir }}/.env"
+    mode: 0600
+
+#- name: build
+#  shell: "{{ item }}"
+#  with_items:
+#    - echo "Start build image..."
+#    - docker build -t {{ service_name }} .
+#    - docker cp $(docker create --name {{ service_name }}-container {{ service_name }} ):/usr/src/app ./build
+#    - docker container rm {{ service_name }}-container
+#    - docker image rm {{ service_name }}
+#  args:
+#    chdir: "{{ project_temp_root_dir }}/"

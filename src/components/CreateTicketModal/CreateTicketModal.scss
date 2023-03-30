@@ -1,0 +1,41 @@
+.create-ticket-modal {
+  .create-ticket_btn {
+    display: flex;
+    justify-content: flex-end;
+    column-gap: 1.5rem;
+  }
+  table {
+    border-collapse: collapse;
+  }
+  td,
+  th {
+    border: 1px solid #dddddd;
+    padding: 5px 8px;
+  }
+  // th {
+  //   background-color: #eee;
+  // }
+  .ant-form-item {
+    margin-bottom: 0;
+  }
+  .create-ticket_photos {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1rem;
+  }
+  .ant-modal-header {
+    background-color: #ff2f48;
+    .ant-modal-title {
+      color: white;
+    }
+  }
+  .ant-modal-close-x {
+    color: white;
+  }
+  .ant-row {
+    padding: 5px 0;
+  }
+  .ant-col {
+    padding-inline: 5px;
+  }
+}

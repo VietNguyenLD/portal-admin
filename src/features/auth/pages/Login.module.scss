@@ -1,0 +1,119 @@
+@use 'assets/sass/abstracts' as abs;
+
+.loginPage {
+  height: 100vh;
+  background-color: var(--azure-200);
+}
+
+.loginContent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  align-items: center;
+  padding: abs.rem(30);
+  border-radius: abs.rem(8);
+
+  background-color: var(--white);
+
+  transform: translate(-50%, -50%);
+  box-shadow: 0 abs.rem(50) abs.rem(50) abs.rem(-50) var(--cyan-800);
+  .loginClose {
+    position: absolute;
+    right: 0;
+    bottom: 104%;
+    font-size: 14px;
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 0.5rem;
+    cursor: pointer;
+  }
+  > div {
+    display: flex;
+  }
+  > span {
+    font-size: 0.75rem;
+    font-style: italic;
+    color: #ff2f48;
+  }
+}
+
+.loginForm {
+  width: abs.rem(400);
+  padding-right: abs.rem(30);
+  .formHeader {
+    margin-bottom: abs.rem(25);
+    text-align: center;
+    img {
+      width: abs.rem(35);
+      margin-bottom: abs.rem(20);
+    }
+    h2 {
+      margin-bottom: abs.rem(20);
+      font-size: abs.rem(20);
+      font-weight: bold;
+    }
+  }
+  :global {
+    .form_input {
+      input {
+        outline: none;
+        border: none;
+        width: 100%;
+        padding: abs.rem(8) 0;
+        border-bottom: 2px solid var(--cobalt-900);
+      }
+    }
+    .input--password {
+      position: relative;
+      input {
+        padding-right: abs.rem(40);
+      }
+    }
+  }
+  .formBtn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    button {
+      padding: abs.rem(10) abs.rem(15);
+      color: white;
+      background-color: var(--red-500);
+      border: none;
+      border-radius: abs.rem(8);
+      font-weight: 500;
+      &.disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+    span {
+      color: #1890ff;
+      cursor: pointer;
+      font-size: 0.875rem;
+    }
+  }
+
+  .anticonEye {
+    position: absolute;
+    right: abs.rem(10);
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+}
+
+.loginImg {
+  width: abs.rem(400);
+  height: abs.rem(350);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+
+  background-color: var(--red-500);
+  img {
+    max-width: 100%;
+    object-fit: contain;
+  }
+}

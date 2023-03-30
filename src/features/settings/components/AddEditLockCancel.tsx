@@ -1,0 +1,89 @@
+import { DatePicker, Form, Input, Modal, Select } from 'antd';
+import { BlockServiceItem } from 'constants/app.reason';
+import { AppReason } from 'models/app.reason';
+import { useEffect } from 'react';
+const { Option } = Select;
+interface AddEditLockCancelProps {
+  openModal: boolean;
+  fetchData: (options?: any) => void;
+  cancelModal: () => void;
+  onFinish: (values: any) => void;
+  item?: AppReason | null;
+  type: 'add' | 'edit';
+}
+const AddEditLockCancel: React.FC<AddEditLockCancelProps> = ({
+  openModal,
+  fetchData,
+  cancelModal,
+  onFinish,
+  item,
+  type,
+}) => {
+  const [form] = Form.useForm();
+
+  const handleCancel = () => {
+    form.resetFields();
+    cancelModal();
+  };
+
+  useEffect(() => {
+    form.resetFields();
+  }, [openModal]);
+
+  useEffect(() => {
+    if (item) {
+      onFill();
+    }
+  }, [item]);
+
+  const onFill = () => {
+    form.setFieldsValue({
+      reason: item?.reason,
+      is_active: item?.is_active,
+      items: item?.items,
+    });
+  };
+
+  return (
+    <Modal
+      title={
+        type === 'add' ? 'Thêm Lý Do Khoá/Mở/Huỷ dịch vụ' : 'Cập Nhật Lý Do Khoá/Mở/Huỷ dịch vụ'
+      }
+      open={openModal}
+      okText={type === 'add' ? 'Tạo mới' : 'Cập nhật'}
+      cancelText='Huỷ'
+      onOk={form.submit}
+      onCancel={handleCancel}>
+      <Form layout='vertical' form={form} onFinish={onFinish}>
+        <Form.Item
+          label='Lý do:'
+          name='reason'
+          rules={[{ required: true, message: 'Vui lòng nhập lý do!' }]}>
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label='Item:'
+          name='items'
+          rules={[{ required: true, message: 'Vui lòng chọn item!' }]}>
+          <Select mode='multiple' allowClear>
+            <Option value={BlockServiceItem.BLOCK_1_WAY}>Khoá 1 chiều</Option>
+            <Option value={BlockServiceItem.BLOCK_2_WAY}>Khoá 2 chiều</Option>
+            <Option value={BlockServiceItem.UNLOCK}>Mở khoá</Option>
+            <Option value={BlockServiceItem.UNSUBSCRIPTION}>Huỷ đăng ký</Option>
+          </Select>
+        </Form.Item>
+        <Form.Item
+          label='Kích hoạt:'
+          name='is_active'
+          rules={[{ required: true, message: 'Vui lòng chọn loại kích hoạt!' }]}>
+          <Select>
+            <Option value={true}>Kích hoạt</Option>
+            <Option value={false}>Không kích hoạt</Option>
+          </Select>
+        </Form.Item>
+      </Form>
+    </Modal>
+  );
+};
+
+export default AddEditLockCancel;

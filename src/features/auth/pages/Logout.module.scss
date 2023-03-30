@@ -1,0 +1,52 @@
+@use 'assets/sass/abstracts' as abs;
+
+.logoutPage {
+  height: 100vh;
+  background-color: var(--azure-200);
+}
+
+.logoutContent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  align-items: center;
+  padding: abs.rem(30);
+  border-radius: abs.rem(8);
+
+  background-color: var(--white);
+
+  transform: translate(-50%, -50%);
+  box-shadow: 0 abs.rem(50) abs.rem(50) abs.rem(-50) var(--cyan-800);
+  > div {
+    display: flex;
+  }
+  > span {
+    font-size: 0.75rem;
+    font-style: italic;
+    color: #ff2f48;
+  }
+}
+
+.logoutForm {
+  width: abs.rem(400);
+  .formHeader {
+    margin-bottom: abs.rem(25);
+    img {
+      width: abs.rem(35);
+      margin-bottom: abs.rem(20);
+    }
+    h2 {
+      margin-bottom: abs.rem(20);
+      font-size: abs.rem(20);
+      font-weight: bold;
+    }
+  }
+  button {
+    padding: abs.rem(10) abs.rem(15);
+    color: white;
+    background-color: var(--red-500);
+    border: none;
+    border-radius: abs.rem(8);
+    font-weight: 500;
+  }
+}

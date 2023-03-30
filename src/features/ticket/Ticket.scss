@@ -1,0 +1,51 @@
+.request-detail {
+  background-color: #fff;
+  table {
+    border-collapse: collapse;
+  }
+  td,
+  th {
+    border: 1px solid #dddddd;
+    padding: 5px 8px;
+  }
+  th {
+    background-color: #eee;
+  }
+  .ant-row {
+    padding: 5px 0;
+  }
+  .create-ticket_btn {
+    display: flex;
+    justify-content: flex-end;
+    column-gap: 1rem;
+  }
+  .ant-image-mask-info {
+    visibility: hidden;
+  }
+}
+
+.update-subs-batch-detail {
+  padding: 1rem;
+
+  background-color: #fff;
+  color: hsla(0, 0%, 0%, 0.8);
+  font-size: 14px;
+  > div {
+    margin-bottom: 1rem;
+  }
+  .info_item {
+    padding: 0.25rem 0;
+  }
+  .batch-detail_action {
+    text-align: right;
+    button {
+      margin-inline: 0.5rem;
+    }
+  }
+  .batch-detail_row-action {
+    span {
+      margin-inline: 0.5rem;
+      cursor: pointer;
+    }
+  }
+}

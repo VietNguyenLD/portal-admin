@@ -1,0 +1,5 @@
+dev_00 ansible_host=119.82.130.114 ansible_user=root
+dev_01 ansible_host=172.17.10.11 ansible_user=root ansible_ssh_common_args='-o StrictHostKeyChecking=no -o ProxyCommand="ssh huynx@124.158.6.55 -W %h:%p"'
+
+[server_hosts]
+dev_01

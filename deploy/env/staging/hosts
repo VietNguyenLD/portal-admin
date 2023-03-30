@@ -1,0 +1,6 @@
+staging_00 ansible_host=103.229.41.107 ansible_user=root
+staging_01 ansible_host=172.17.10.13 ansible_user=root ansible_ssh_common_args='-o StrictHostKeyChecking=no -o ProxyCommand="ssh huynx@124.158.6.55 -W %h:%p"'
+staging_02 ansible_host=portal_staging_api_02
+
+[server_hosts]
+staging_01

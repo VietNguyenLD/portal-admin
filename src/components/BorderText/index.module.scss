@@ -1,0 +1,15 @@
+@use 'assets/sass/abstracts' as abs;
+
+.fieldset_wrapper {
+    border: 1px solid black;
+    // margin: 20px auto;
+
+    legend {
+        width: fit-content !important;
+        margin-left: abs.rem(16) !important;
+        margin-bottom: 0 !important;
+        padding: 0 abs.rem(12) !important;
+        border-bottom: none !important;
+        color: black !important;
+    }
+}

@@ -1,0 +1,18 @@
+.list_button {
+   text-align: end;
+   button {
+      margin: 0 8px;
+   }
+}
+
+.custom_table {
+   max-height: calc(100vh - 300px);
+   overflow: auto;  
+}
+
+.has_delete {
+   th:last-child,
+   td:last-child {
+      display: none;
+   }
+}

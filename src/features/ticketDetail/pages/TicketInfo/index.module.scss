@@ -1,0 +1,21 @@
+@use 'assets/sass/abstracts' as abs;
+
+.ticket_info {
+    font-size: abs.rem(16);
+    &__textbold {
+        font-weight: 600;
+    }
+
+    .mb_10{
+        margin-bottom: abs.rem(10);
+    }
+
+    .mb_20{
+        margin-bottom: abs.rem(20);
+    }
+
+    .mt_20{
+        margin-top: abs.rem(20);
+    }
+}
+

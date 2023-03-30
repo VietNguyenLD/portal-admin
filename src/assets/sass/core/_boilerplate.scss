@@ -1,0 +1,92 @@
+html {
+  font-size: 100%;
+  scroll-behavior: smooth;
+}
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  background-color: #f9f6fd;
+  color: #58555e;
+}
+
+/* Hide scrollbar for Safari and Opera */
+body::-webkit-scrollbar {
+  display: none;
+}
+.container {
+  margin-inline: auto;
+}
+.container-fluid {
+  width: 100%;
+  margin-inline: auto;
+}
+
+/* Position */
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+}
+.fixed {
+  position: fixed;
+}
+
+/* Display */
+.flex {
+  display: flex;
+}
+.inline-flex {
+  display: inline-flex;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.justify-end {
+  justify-content: flex-end;
+}
+.justify-around {
+  justify-content: space-around;
+}
+.align-center {
+  align-items: center;
+}
+
+/* Text */
+.text-right {
+  text-align: right;
+}
+.text-semi {
+  font-weight: 600;
+}
+
+/* color */
+.bg-white {
+  background-color: #fff;
+}
+
+/* */
+.pointer {
+  cursor: pointer;
+}
+
+.row-button {
+  display: flex;
+  column-gap: 1rem;
+}
+
+.photo-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 1rem;
+}
+
+/* width */
+.w-50 {
+  width: 50%;
+}

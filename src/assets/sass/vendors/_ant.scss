@@ -1,0 +1,93 @@
+.ant-spin-nested-loading {
+  height: 100%;
+  > div {
+    .ant-spin {
+      max-height: unset;
+    }
+  }
+}
+
+/*  Custom Taps */
+.ant-tabs-card > .ant-tabs-nav .ant-tabs-tab,
+.ant-tabs-card > div > .ant-tabs-nav .ant-tabs-tab {
+  border: 1px solid #acacac;
+}
+
+.ant-tabs-top > .ant-tabs-nav::before,
+.ant-tabs-bottom > .ant-tabs-nav::before,
+.ant-tabs-top > div > .ant-tabs-nav::before,
+.ant-tabs-bottom > div > .ant-tabs-nav::before {
+  border-bottom: 1px solid #acacac;
+}
+
+.ant-tabs-content-holder {
+  border-left: 1px solid #acacac;
+  border-right: 1px solid #acacac;
+  border-bottom: 1px solid #acacac;
+  padding: 1rem;
+}
+.ant-tabs > .ant-tabs-nav,
+.ant-tabs > div > .ant-tabs-nav {
+  margin-bottom: 0;
+}
+.ant-tabs-card.ant-tabs-top > .ant-tabs-nav .ant-tabs-tab:not(:last-of-type),
+.ant-tabs-card.ant-tabs-bottom > .ant-tabs-nav .ant-tabs-tab:not(:last-of-type),
+.ant-tabs-card.ant-tabs-top > div > .ant-tabs-nav .ant-tabs-tab:not(:last-of-type),
+.ant-tabs-card.ant-tabs-bottom > div > .ant-tabs-nav .ant-tabs-tab:not(:last-of-type) {
+  margin: 0;
+}
+
+.ant-upload-list-picture-card .ant-upload-list-item-error {
+  border-color: #d9d9d9;
+}
+
+.search-box {
+  margin-bottom: 16px;
+  &__right {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+  &__end {
+    display: flex;
+    align-items: flex-end;
+  }
+  &__search-button {
+    margin-left: 10px;
+  }
+}
+.ant-form-item {
+  margin-bottom: 0;
+}
+.ant-image {
+  height: 100%;
+}
+
+.ant-form legend {
+  font-size: 24px !important;
+  font-weight: 500;
+}
+
+.hide_icon_remove {
+  .ant-upload-list-item-card-actions-btn {
+    display: none;
+  }
+}
+
+.modal-noti {
+  button:first-child {
+    display: none !important;
+  }
+}
+
+.ant {
+  &-scrolling-effect {
+    width: 100% !important;
+  }
+  &-image-mask-info {
+    display: none;
+  }
+  &-row {
+    padding: 5px 0;
+  }
+}

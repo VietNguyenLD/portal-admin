@@ -1,0 +1,16 @@
+.table_selected {
+    width: auto;
+    thead {
+        text-align: left;
+        background-color: #212529;
+        color: #fff;
+        tr > th:first-child {
+            width: 100px;
+        }
+    }
+    tbody {
+        tr:nth-child(2n) {
+            background-color: #e9ecef;
+        }
+    }
+}

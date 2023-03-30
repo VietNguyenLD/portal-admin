@@ -1,0 +1,14 @@
+---
+service_name: admin-portal-web
+deploy_project_dir: /var/www/{{ service_name }}
+
+deploy_build_dir: /usr/share/nginx/portal-dev.mylocal.vn
+
+docker_service_name: admin-portal
+
+project_temp_root_dir: "/tmp/{{ service_name }}"
+env: dev
+
+# source code
+git_repo: git@git.asimtelecom.vn:mylocal/admin-portal-web.git
+git_branch: develop

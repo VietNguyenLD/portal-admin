@@ -1,0 +1,49 @@
+---
+
+- name: check if "{{ deploy_project_dir }}" exists
+  become: true
+  become_user: root
+  stat: path="{{ deploy_project_dir }}"
+  register: stat_result
+
+- name: create "{{ deploy_project_dir }}"
+  when: not stat_result.stat.exists
+  become: true
+  become_user: root
+  file:
+    path: "{{ deploy_project_dir }}"
+    state: directory
+
+- name: sync from "{{ project_temp_root_dir }}/" to {{ deploy_project_dir }}
+  become: true
+  become_user: root
+  synchronize:
+    delete: yes
+    rsync_opts:
+      - --exclude=.env
+      - --rsh='ssh -J "{{ lookup('env', 'LB_USER', default='huynx') }}"@"{{ lookup('env', 'LB_HOST') }}"'
+    partial: yes
+    recursive: yes
+    src: "{{ project_temp_root_dir }}/"
+    dest: "{{ deploy_project_dir }}"
+
+
+- name: Clean "{{ project_temp_root_dir }}"
+  run_once: true
+  delegate_to: localhost
+  file:
+    state: absent
+    path: "{{ project_temp_root_dir }}"
+- name: build
+  shell: "{{ item }}"
+  with_items:
+    - echo "Start build image..."
+    - docker build -t {{ service_name }} .
+    - docker cp $(docker create --name {{ service_name }}-container {{ service_name }} ):/usr/src/app ./build
+    - docker container rm {{ service_name }}-container
+    - docker image rm {{ service_name }}
+  args:
+    chdir: "{{ deploy_project_dir }}"
+
+- name: sync from build to deploy build dir
+  shell: rsync -a {{ deploy_project_dir }}/build/ {{ deploy_build_dir }}/

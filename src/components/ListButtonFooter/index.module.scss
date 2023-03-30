@@ -1,0 +1,9 @@
+@use 'assets/sass/abstracts' as abs;
+.list_btn_footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: abs.rem(16) 0;
+  div:not(:last-child) {
+    margin-right: abs.rem(16);
+  }
+}
